@@ -48,7 +48,7 @@ foreach($orders as $order){
     $requests[$order->geId()] = $client->createRequest($order);
 }
 
-$httpClient = new \GuzzleHttp\Client(;
+$httpClient = new \GuzzleHttp\Client();
 $pool = new Pool($httpClient, $requests, [
     'concurrency' => 5,
     'fulfilled' => function (Response $response, $index) {
