@@ -15,17 +15,18 @@
     "psr/http-message": "~1.0",
     "guzzlehttp/psr7": "~1.3"
   },
-
   "require-dev": {
     "phpunit/phpunit": "~5.0"
   },
   "suggest": {
-  "kdyby/curl-ca-bundle": "Https certificates bundle"
-},
+    "kdyby/curl-ca-bundle": "Https certificates bundle"
+  },
   "autoload": {
     "psr-4": {
       "Soukicz\\Zbozicz\\": "src/"
     },
-    "files": ["src"]
+    "files": [
+      "src/exceptions.php"
+    ]
   }
 }
