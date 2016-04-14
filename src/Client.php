@@ -108,6 +108,9 @@ class Client {
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
         curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getBody());
+        if(class_exists('\Kdyby\CurlCaBundle\CertificateHelper')) {
+            curl_setopt($ch, CURLOPT_CAINFO, \Kdyby\CurlCaBundle\CertificateHelper::getCaInfoFile());
+        }
         $result = curl_exec($ch);
         if($result === false) {
             throw new IOException('Unable to establish connection to ZboziKonverze service: curl error (' . curl_errno($ch) . ') - ' . curl_error($ch));
