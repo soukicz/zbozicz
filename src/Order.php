@@ -170,7 +170,7 @@ class Order {
     }
 
     public function addCartItem(CartItem $cartItem) {
-        $this->addCartItem($cartItem);
+        $this->cartItems[] = $cartItem;
         return $this;
     }
 }

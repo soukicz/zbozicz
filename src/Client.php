@@ -88,6 +88,7 @@ class Client {
                 if(!empty($cartItem->getQuantity())) {
                     $item['quantity'] = $cartItem->getQuantity();
                 }
+                $data['cart'][] = $item;
             }
         }
 
