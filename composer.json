@@ -3,6 +3,12 @@
   "description": "Zboží.cz conversion tracking",
   "minimum-stability": "stable",
   "license": "MIT",
+  "keywords": [
+    "zbozicz",
+    "seznam",
+    "zbozi",
+    "seznamcz"
+  ],
   "authors": [
     {
       "name": "Petr Soukup",
