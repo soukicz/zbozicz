@@ -28,5 +28,13 @@
     "files": [
       "src/exceptions.php"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Soukicz\\TestZbozicz\\": "tests/"
+    },
+    "files": [
+      "src/exceptions.php"
+    ]
   }
 }

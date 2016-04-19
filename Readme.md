@@ -7,18 +7,16 @@ Vychází z https://github.com/seznam/zbozi-konverze, ale přidává lepší mo�
 ```php
 <?php
 
-use \Soukicz\Zbozicz\Client;
-use \Soukicz\Zbozicz\Order;
-use \Soukicz\Zbozicz\CartItem;
+use Soukicz\Zbozicz\Client;
+use Soukicz\Zbozicz\Order;
+use Soukicz\Zbozicz\CartItem;
 
 $client = new Client(1234567890, "fedcba9876543210123456789abcdef", true);
 
 $order = new Order('OBJ21101');
 $order
     ->setEmail('info@example.org')
-    ->setDeliveryType('PPL');
-
-$order
+    ->setDeliveryType('PPL')
     ->addCartItem((new CartItem)
         ->setId('ABC1')
         ->setUnitPrice(1000)
@@ -37,10 +35,11 @@ Je možné vytvořit si jen PSR-7 request a data následně odeslat například 
 
 ```php
 <?php
-use \Soukicz\Zbozicz\Client;
-use \Soukicz\Zbozicz\Order;
-use \Soukicz\Zbozicz\CartItem;
-use \GuzzleHttp\Psr7\Response;
+use Soukicz\Zbozicz\Client;
+use Soukicz\Zbozicz\Order;
+use Soukicz\Zbozicz\CartItem;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Client\Pool;
 
 $client = new Client(1234567890, "fedcba9876543210123456789abcdef", true);
 $requests = [];
