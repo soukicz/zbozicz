@@ -7,7 +7,7 @@ use Soukicz\Zbozicz\Order;
 
 class ClientTest extends \PHPUnit_Framework_TestCase {
     function testOrderItems() {
-        $client = new Client(1, 2, true);
+        $client = new Client('1c342b11e6f1fc2c10242127ea2cacc8', '6caf7fe67a300047c72496969f637a9c', true);
         $order = new Order(1234);
         $order
             ->setEmail('info@example.org')
@@ -21,13 +21,13 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
                 ->setId('ABC2')
                 ->setUnitPrice(2000)
             );
-
+        
         $request = $client->createRequest($order);
         $this->assertEquals('POST', $request->getMethod());
         $data = json_decode($request->getBody(), true);
 
         $this->assertEquals([
-            'PRIVATE_KEY' => 2,
+            'PRIVATE_KEY' => '6caf7fe67a300047c72496969f637a9c',
             'sandbox' => 1,
             'orderId' => 1234,
             'email' => 'info@example.org',
@@ -47,6 +47,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
             ]
         ], $data);
         $this->assertEquals('application/json', $request->getHeader('content-type')[0]);
-        $this->assertEquals('https://sandbox.zbozi.cz/action/1/conversion/backend', (string)$request->getUri());
+        $this->assertEquals('https://sandbox.zbozi.cz/action/1c342b11e6f1fc2c10242127ea2cacc8/conversion/backend', (string)$request->getUri());
+
+
     }
 }

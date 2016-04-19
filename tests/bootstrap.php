@@ -1,5 +1,6 @@
 <?php
-error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 if(file_exists(__DIR__ . '/../vendor/autoload.php')) {
     // dependencies were installed via composer - this is the main project
     $classLoader = require __DIR__ . '/../vendor/autoload.php';

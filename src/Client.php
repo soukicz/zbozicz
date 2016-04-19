@@ -107,12 +107,19 @@ class Client {
         curl_setopt($ch, CURLOPT_URL, $this->getUrl());
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $request->getHeaders());
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $request->getBody());
-        if(class_exists('\Kdyby\CurlCaBundle\CertificateHelper')) {
+        $headers = [];
+        foreach ($request->getHeaders() as $name => $lines) {
+            $headers[$name] = $request->getHeaderLine($name);
+        }
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, (string)$request->getBody());
+
+        if(class_exists('Kdyby\CurlCaBundle\CertificateHelper')) {
             curl_setopt($ch, CURLOPT_CAINFO, \Kdyby\CurlCaBundle\CertificateHelper::getCaInfoFile());
         }
         $result = curl_exec($ch);
+
         if($result === false) {
             throw new IOException('Unable to establish connection to ZboziKonverze service: curl error (' . curl_errno($ch) . ') - ' . curl_error($ch));
         }
@@ -120,6 +127,10 @@ class Client {
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         if($httpCode !== 200) {
+            $data = json_decode($result, true);
+            if($data && !empty($data['statusMessage'])) {
+                throw new IOException('Request was not accepted HTTP ' . $httpCode . ': ' . $data['statusMessage']);
+            }
             throw new IOException('Request was not accepted (HTTP ' . $httpCode . ')');
         }
     }
