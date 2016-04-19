@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/soukicz/zbozicz.svg?branch=master)](https://travis-ci.org/soukicz/zbozicz)
+
 # Pokročilé měření konverzí Zboží.cz
 
 Vychází z https://github.com/seznam/zbozi-konverze, ale přidává lepší možnost integrace do větších systémů. Namespace, asynchronní odesílání objednávek atd.
