@@ -2,9 +2,6 @@
 namespace Soukicz\Zbozicz;
 
 use GuzzleHttp\Psr7\Request;
-use Soukicz\ArgumentException;
-use Soukicz\InputException;
-use Soukicz\IOException;
 
 class Client {
     protected $shopId;
