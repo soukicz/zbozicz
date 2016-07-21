@@ -111,6 +111,7 @@ class Client {
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_POSTFIELDS, (string)$request->getBody());
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         if(class_exists('Kdyby\CurlCaBundle\CertificateHelper')) {
             curl_setopt($ch, CURLOPT_CAINFO, \Kdyby\CurlCaBundle\CertificateHelper::getCaInfoFile());
