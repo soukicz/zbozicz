@@ -148,9 +148,6 @@ class Client {
         if(empty($order->getId())) {
             $errors[] = 'Missing order code';
         }
-        if(empty($order->getEmail())) {
-            $errors[] = 'Missing email address';
-        }
         return $errors;
     }
 }
