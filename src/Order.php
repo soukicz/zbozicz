@@ -13,7 +13,7 @@ class Order {
     protected $deliveryType, $paymentType;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $deliveryDate;
     /**
@@ -87,7 +87,7 @@ class Order {
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getDeliveryDate() {
         return $this->deliveryDate;

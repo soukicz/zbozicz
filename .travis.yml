@@ -15,7 +15,9 @@ cache:
 before_script:
   - composer install
 
-script: vendor/bin/phpunit --coverage-clover=coverage.xml
+script:
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
+  - vendor/bin/phpstan analyse src --level=4
 
 after_script:
   - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "5.6" ] ; then php ocular.phar code-coverage:upload --format=php-clover coverage.xml; fi;'
