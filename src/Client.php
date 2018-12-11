@@ -113,7 +113,14 @@ class Client {
         curl_setopt($ch, CURLOPT_POSTFIELDS, (string)$request->getBody());
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        if(class_exists('Kdyby\CurlCaBundle\CertificateHelper')) {
+        if(class_exists('Composer\CaBundle\CaBundle')) {
+            $caPathOrFile = \Composer\CaBundle\CaBundle::getSystemCaRootBundlePath();
+            if(is_dir($caPathOrFile) || (is_link($caPathOrFile) && is_dir(readlink($caPathOrFile)))) {
+                curl_setopt($ch, CURLOPT_CAPATH, $caPathOrFile);
+            } else {
+                curl_setopt($ch, CURLOPT_CAINFO, $caPathOrFile);
+            }
+        } elseif(class_exists('Kdyby\CurlCaBundle\CertificateHelper')) {
             curl_setopt($ch, CURLOPT_CAINFO, \Kdyby\CurlCaBundle\CertificateHelper::getCaInfoFile());
         }
         $result = curl_exec($ch);
