@@ -13,13 +13,9 @@ class Order {
     protected $deliveryType, $paymentType;
 
     /**
-     * @var \DateTime|null
-     */
-    protected $deliveryDate;
-    /**
      * @var float
      */
-    protected $deliveryPrice, $otherCosts, $totalPrice;
+    protected $deliveryPrice, $otherCosts;
 
     /**
      * @var CartItem[]
@@ -87,22 +83,6 @@ class Order {
     }
 
     /**
-     * @return \DateTime|null
-     */
-    public function getDeliveryDate() {
-        return $this->deliveryDate;
-    }
-
-    /**
-     * @param \DateTime $deliveryDate
-     * @return Order
-     */
-    public function setDeliveryDate(\DateTime $deliveryDate) {
-        $this->deliveryDate = $deliveryDate;
-        return $this;
-    }
-
-    /**
      * @return float
      */
     public function getDeliveryPrice() {
@@ -131,22 +111,6 @@ class Order {
      */
     public function setOtherCosts($otherCosts) {
         $this->otherCosts = $otherCosts;
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getTotalPrice() {
-        return $this->totalPrice;
-    }
-
-    /**
-     * @param float $totalPrice
-     * @return Order
-     */
-    public function setTotalPrice($totalPrice) {
-        $this->totalPrice = $totalPrice;
         return $this;
     }
 
