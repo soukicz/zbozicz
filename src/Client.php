@@ -44,10 +44,6 @@ class Client {
             $data['deliveryType'] = $order->getDeliveryType();
         }
 
-        if($order->getDeliveryDate()) {
-            $data['deliveryDate'] = $order->getDeliveryDate()->format('Y-m-d');
-        }
-
         if($order->getDeliveryPrice()) {
             $data['deliveryPrice'] = $order->getDeliveryPrice();
         }
@@ -58,15 +54,6 @@ class Client {
 
         if($order->getOtherCosts()) {
             $data['otherCosts'] = $order->getOtherCosts();
-        }
-
-        if($order->getTotalPrice()) {
-            $data['totalPrice'] = $order->getTotalPrice();
-        } else {
-            $data['totalPrice'] = $order->getDeliveryPrice() + $order->getOtherCosts();
-            foreach ($order->getCartItems() as $cartItem) {
-                $data['totalPrice'] += $cartItem->getUnitPrice() * $cartItem->getQuantity();
-            }
         }
 
         if(!empty($order->getCartItems())) {
