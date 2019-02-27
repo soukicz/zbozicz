@@ -32,7 +32,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
             'orderId' => 1234,
             'email' => 'info@example.org',
             'deliveryType' => 'PPL',
-            'totalPrice' => 4000,
             'cart' => [
                 [
                     'itemId' => 'ABC1',
