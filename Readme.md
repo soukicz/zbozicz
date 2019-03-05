@@ -21,11 +21,13 @@ $order
     ->setDeliveryType('PPL')
     ->addCartItem((new CartItem)
         ->setId('ABC1')
+        ->setName('NAZEV PRODUKTU')
         ->setUnitPrice(1000)
         ->setQuantity(2)
     )
     ->addCartItem((new CartItem)
         ->setId('ABC2')
+        ->setName('NAZEV PRODUKTU')
         ->setUnitPrice(2000)
     );
 
