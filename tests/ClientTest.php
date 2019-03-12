@@ -26,9 +26,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('POST', $request->getMethod());
         $data = json_decode($request->getBody(), true);
 
-        $this->assertEquals([
+        $this->assertSame([
             'PRIVATE_KEY' => '6caf7fe67a300047c72496969f637a9c',
-            'sandbox' => 1,
+            'sandbox' => true,
             'orderId' => 1234,
             'email' => 'info@example.org',
             'deliveryType' => 'PPL',
