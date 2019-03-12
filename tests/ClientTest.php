@@ -51,7 +51,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
                 ]
             ]
         ], $data);
-        $this->assertEquals('application/json', $request->getHeader('content-type')[0]);
+        $this->assertSame([
+            'Host' => ['sandbox.zbozi.cz'],
+            'Content-type' => ['application/json'],
+        ], $request->getHeaders());
         $this->assertEquals('https://sandbox.zbozi.cz/action/1c342b11e6f1fc2c10242127ea2cacc8/conversion/backend', (string)$request->getUri());
 
 
