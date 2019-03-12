@@ -16,6 +16,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
             ->setOtherCosts(10)
             ->addCartItem((new CartItem())
                 ->setId('ABC1')
+                ->setName('Product ABC')
                 ->setUnitPrice(1000)
                 ->setQuantity(2)
             )
@@ -39,6 +40,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
             'cart' => [
                 [
                     'itemId' => 'ABC1',
+                    'productName' => 'Product ABC',
                     'unitPrice' => 1000,
                     'quantity' => 2,
                 ],
