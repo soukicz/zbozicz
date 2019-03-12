@@ -13,6 +13,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
             ->setEmail('info@example.org')
             ->setDeliveryType('PPL')
             ->setDeliveryPrice(30)
+            ->setOtherCosts(10)
             ->addCartItem((new CartItem())
                 ->setId('ABC1')
                 ->setUnitPrice(1000)
@@ -34,6 +35,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
             'email' => 'info@example.org',
             'deliveryType' => 'PPL',
             'deliveryPrice' => 30,
+            'otherCosts' => 10,
             'cart' => [
                 [
                     'itemId' => 'ABC1',
