@@ -107,9 +107,8 @@ class Client {
             } else {
                 curl_setopt($ch, CURLOPT_CAINFO, $caPathOrFile);
             }
-        } elseif(class_exists('Kdyby\CurlCaBundle\CertificateHelper')) {
-            curl_setopt($ch, CURLOPT_CAINFO, \Kdyby\CurlCaBundle\CertificateHelper::getCaInfoFile());
         }
+
         $result = curl_exec($ch);
 
         if($result === false) {
