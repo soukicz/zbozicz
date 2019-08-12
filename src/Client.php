@@ -66,7 +66,7 @@ class Client {
                 if(!empty($cartItem->getName())) {
                     $item['productName'] = $cartItem->getName();
                 }
-                if(!empty($cartItem->getUnitPrice())) {
+                if($cartItem->getUnitPrice() !== null) {
                     $item['unitPrice'] = $cartItem->getUnitPrice();
                 }
                 if(!empty($cartItem->getQuantity())) {
