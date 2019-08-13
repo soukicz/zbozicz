@@ -23,6 +23,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
             ->addCartItem((new CartItem)
                 ->setId('ABC2')
                 ->setUnitPrice(2000)
+            )
+            ->addCartItem((new CartItem)
+                ->setId('ABC3')
+                ->setUnitPrice(0)
             );
         
         $request = $client->createRequest($order);
@@ -47,6 +51,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase {
                 [
                     'itemId' => 'ABC2',
                     'unitPrice' => 2000,
+                    'quantity' => 1,
+                ],
+                [
+                    'itemId' => 'ABC3',
+                    'unitPrice' => 0,
                     'quantity' => 1,
                 ]
             ]
