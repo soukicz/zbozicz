@@ -8,7 +8,7 @@ class CartItem {
     protected $id, $name;
 
     /**
-     * @var float
+     * @var float|NULL
      */
     protected $unitPrice;
     /**
@@ -49,7 +49,7 @@ class CartItem {
     }
 
     /**
-     * @return float
+     * @return float|NULL
      */
     public function getUnitPrice() {
         return $this->unitPrice;
