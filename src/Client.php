@@ -85,22 +85,22 @@ class Client {
     }
 
 
-	/**
-	 * @param Order $order
-	 * @return string|bool
-	 */
-	public function sendOrder(Order $order) {
-		$request = $this->createRequest($order);
+    /**
+     * @param Order $order
+     * @return string|bool
+     */
+    public function sendOrder(Order $order) {
+        $request = $this->createRequest($order);
 
-		return $this->sendRequest($request);
-	}
+        return $this->sendRequest($request);
+    }
 
 
-	/**
-	 * @param Request $request
-	 * @return string|bool
-	 */
-	public function sendRequest(Request $request) {
+    /**
+     * @param Request $request
+     * @return string|bool
+     */
+    public function sendRequest(Request $request) {
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $this->getUrl());
@@ -140,7 +140,7 @@ class Client {
             throw new IOException('Request was not accepted (HTTP ' . $httpCode . ')');
         }
 
-		return $result;
+        return $result;
     }
 
     protected function getUrl() {
