@@ -5,7 +5,7 @@ use Soukicz\Zbozicz\CartItem;
 use Soukicz\Zbozicz\Client;
 use Soukicz\Zbozicz\Order;
 
-class ClientTest extends \PHPUnit_Framework_TestCase {
+class ClientTest extends \PHPUnit\Framework\TestCase {
     function testOrderItems() {
         $client = new Client('1c342b11e6f1fc2c10242127ea2cacc8', '6caf7fe67a300047c72496969f637a9c', true);
         $order = new Order(1234);
