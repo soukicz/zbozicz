@@ -1,3 +1,0 @@
-parameters:
-	ignoreErrors:
-		- '#Call to static method getSystemCaRootBundlePath\(\) on an unknown class Composer\\CaBundle\\CaBundle#'
