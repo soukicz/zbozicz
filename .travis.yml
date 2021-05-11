@@ -14,7 +14,7 @@ before_script:
   - composer install
 
 script:
-  - vendor/bin/phpunit --coverage-clover=coverage.xml
+  - vendor/bin/phpunit tests --coverage-clover=coverage.xml
   - vendor/bin/phpstan analyse --level=4 src
 
 after_script:
