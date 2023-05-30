@@ -44,7 +44,7 @@ class Client {
             $data['deliveryType'] = $order->getDeliveryType();
         }
 
-        if($order->getDeliveryPrice()) {
+        if($order->getDeliveryPrice() !== null) {
             $data['deliveryPrice'] = $order->getDeliveryPrice();
         }
 
@@ -52,7 +52,7 @@ class Client {
             $data['paymentType'] = $order->getPaymentType();
         }
 
-        if($order->getOtherCosts()) {
+        if($order->getOtherCosts() !== null) {
             $data['otherCosts'] = $order->getOtherCosts();
         }
 
