@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ruleset name="MiBo Standard" namespace="">
+    <description>MiBo coding standard</description>
+
+    <arg name="colors"/>
+
+    <arg value="sp" />
+
+    <file>./src</file>
+
+    <ini name="memory_limit" value="256M"/>
+
+    <rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+        <exclude name="SlevomatCodingStandard.Commenting.DocCommentSpacing"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions.NonFullyQualifiedException"/>
+        <exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall.MissingTrailingComma"/>
+        <exclude name="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces.NoEmptyLineBeforeClosingBrace"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowEmpty.DisallowedEmpty"/>
+        <exclude name="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces.NoEmptyLineAfterOpeningBrace"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator.MultiLineTernaryOperatorNotUsed"/>
+        <exclude name="SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountBeforeFirstUse"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions.NonFullyQualified"/>
+        <exclude name="SlevomatCodingStandard.Files.FunctionLength.FunctionLength"/>
+        <exclude name="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.UselessAnnotation"/>
+        <exclude name="SlevomatCodingStandard.Commenting.UselessInheritDocComment.UselessInheritDocComment"/>
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLineDocComment.MultiLineDocComment"/>
+        <exclude name="SlevomatCodingStandard.Classes.RequireConstructorPropertyPromotion.RequiredConstructorPropertyPromotion"/>
+        <exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration.MissingTrailingComma"/>
+        <exclude name="SlevomatCodingStandard.Classes.DisallowConstructorPropertyPromotion.DisallowedConstructorPropertyPromotion"/>
+        <exclude name="SlevomatCodingStandard.Whitespaces.DuplicateSpaces.DuplicateSpaces"/>
+        <exclude name="SlevomatCodingStandard.Commenting.DisallowOneLinePropertyDocComment.OneLinePropertyComment"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.NewWithoutParentheses.UselessParentheses"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.UselessAnnotation"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants.NonFullyQualified"/>
+        <exclude name="SlevomatCodingStandard.Functions.DisallowArrowFunction.DisallowedArrowFunction"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
+        <properties>
+            <property name="spacesCountAroundEqualsSign" type="int" value="0" />
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix">
+        <exclude-pattern>./src/Contracts/*</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.RequireAbstractOrFinal.ClassNeitherAbstractNorFinal">
+        <exclude-pattern>./src/Exceptions/*</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix">
+        <exclude-pattern>./src/Exceptions/*</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+        <properties>
+            <property name="rootNamespaces" type="array">
+                <element key="src" value="Soukicz\Zbozicz"/>
+                <element key="tests" value="Soukicz\Zbozicz\Tests"/>
+            </property>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys.IncorrectKeyOrder">
+        <exclude-pattern>./src/*</exclude-pattern>
+        <exclude-pattern>./tests/*</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Files.FileLength.FileTooLong">
+        <exclude-pattern>./src/*</exclude-pattern>
+        <exclude-pattern>./tests/*</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Classes.ClassLength.ClassTooLong">
+        <exclude-pattern>./src/*</exclude-pattern>
+        <exclude-pattern>./tests/*</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator">
+        <exclude-pattern>./src/*</exclude-pattern>
+        <exclude-pattern>./tests/*</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Attributes.AttributesOrder">
+        <properties>
+            <property name="orderAlphabetically" value="true" type="bool" />
+        </properties>
+    </rule>
+</ruleset>

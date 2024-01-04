@@ -7,29 +7,31 @@ Vychází z https://github.com/seznam/zbozi-konverze, ale přidává lepší mo�
 
 ## Odeslání objednávky
 ```php
-<?php
-
 use Soukicz\Zbozicz\Client;
-use Soukicz\Zbozicz\Order;
-use Soukicz\Zbozicz\CartItem;
+use Soukicz\Zbozicz\Factories\CartItemFactory;
+use Soukicz\Zbozicz\Factories\OrderFactory;
 
-$client = new Client(1234567890, "fedcba9876543210123456789abcdef", true);
+$client          = new \Soukicz\Zbozicz\Client(1234567890, "fedcba9876543210123456789abcdef", true);
+$cartItemFactory = new \Soukicz\Zbozicz\Factories\CartItemFactory();
+$orderFactory    = new \Soukicz\Zbozicz\Factories\OrderFactory();
 
-$order = new Order('OBJ21101');
-$order
-    ->setEmail('info@example.org')
+$order = $orderFactory->setId('OBJ21101')
     ->setDeliveryType('PPL')
-    ->addCartItem((new CartItem)
-        ->setId('ABC1')
-        ->setName('NAZEV PRODUKTU')
-        ->setUnitPrice(1000)
-        ->setQuantity(2)
+    ->setEmail('info@example.org')
+    ->addItem(
+        $cartItemFactory->setId('ABC1')
+            ->setName('NAZEV PRODUKTU')
+            ->setUnitPrice(1000)
+            ->setQuantity(2)
+            ->create()
     )
-    ->addCartItem((new CartItem)
-        ->setId('ABC2')
-        ->setName('NAZEV PRODUKTU')
-        ->setUnitPrice(2000)
-    );
+    ->addItem(
+        $cartItemFactory->setId('ABC2')
+            ->setName('NAZEV PRODUKTU')
+            ->setUnitPrice(2000)
+            ->create()
+    )
+    ->create();
 
 $client->sendOrder($order);
 ```
@@ -38,26 +40,22 @@ $client->sendOrder($order);
 Je možné vytvořit si jen PSR-7 request a data následně odeslat například přes Guzzle. Lze tak jednoduše odesílat objednávky hromadně paralelně.
 
 ```php
-<?php
-use Soukicz\Zbozicz\Client;
-use Soukicz\Zbozicz\Order;
-use Soukicz\Zbozicz\CartItem;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Client\Pool;
+/** @var \Soukicz\Zbozicz\Entities\Order[] $orders */
+$orders      = [...];
+$zboziClient = new \Soukicz\Zbozicz\Client(1234567890, "fedcba9876543210123456789abcdef", true);
+$httpClient  = new \GuzzleHttp\Client();
+$requests    = [];
 
-$client = new Client(1234567890, "fedcba9876543210123456789abcdef", true);
-$requests = [];
-foreach($orders as $order){
+foreach($orders as $order) {
     $requests[$order->geId()] = $client->createRequest($order);
 }
 
-$httpClient = new \GuzzleHttp\Client();
-$pool = new Pool($httpClient, $requests, [
+new \GuzzleHttp\Client\Pool($httpClient, $requests, [
     'concurrency' => 5,
-    'fulfilled' => function (Response $response, $index) {
+    'fulfilled'   => static function (\GuzzleHttp\Psr7\Response $response, string $index): void {
         echo "Order '$index' accepted\n";
     },
-    'rejected' => function ($reason, $index) {
+    'rejected'    => static function (string $reason, static $index): void {
         echo "Order '$index' not accepted: " . $reason . "\n";
     },
 ]);

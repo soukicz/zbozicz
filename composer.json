@@ -1,44 +1,55 @@
 {
-  "name": "soukicz/zbozicz",
-  "description": "Zboží.cz conversion tracking",
-  "minimum-stability": "stable",
-  "license": "MIT",
-  "keywords": [
-    "zbozicz",
-    "seznam",
-    "zbozi",
-    "seznamcz"
-  ],
-  "config": {
-    "sort-packages": true
-  },
-  "authors": [
-    {
-      "name": "Petr Soukup",
-      "email": "soukup@simplia.cz"
+    "name": "soukicz/zbozicz",
+    "description": "Zboží.cz conversion tracking",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "keywords": [
+        "zbozicz",
+        "seznam",
+        "zbozi",
+        "seznamcz"
+    ],
+    "config": {
+        "sort-packages": true,
+        "lock": false,
+        "platform-check": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "authors": [
+        {
+            "name": "Petr Soukup",
+            "email": "soukup@simplia.cz"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "guzzlehttp/psr7": "^2.6"
+    },
+    "require-dev": {
+        "php-parallel-lint/php-parallel-lint": "^1.3",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan": "^1.10",
+        "phpstan/phpstan-strict-rules": "^1.5",
+        "phpunit/php-invoker": "^4.0",
+        "phpunit/phpunit": "^10.4",
+        "slevomat/coding-standard": "^8.14"
+    },
+    "suggest": {
+        "composer/ca-bundle": "Https certificates bundle"
+    },
+    "autoload": {
+        "psr-4": {
+            "Soukicz\\Zbozicz\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Soukicz\\TestZbozicz\\": "tests/"
+        }
     }
-  ],
-  "require": {
-    "php": ">=5.6.0",
-    "ext-curl": "*",
-    "ext-json": "*",
-    "guzzlehttp/psr7": "^1.3|^2.0"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~9.5",
-    "phpstan/phpstan": "~0.9|~0.10|~0.11"
-  },
-  "suggest": {
-    "composer/ca-bundle": "Https certificates bundle"
-  },
-  "autoload": {
-    "psr-4": {
-      "Soukicz\\Zbozicz\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Soukicz\\TestZbozicz\\": "tests/"
-    }
-  }
 }
